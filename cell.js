@@ -18,30 +18,31 @@ function Cell(i, j, w) {
 }
 
 Cell.prototype.show = function() {
+
   stroke(0);
   noFill();
   rect(this.x, this.y, this.w, this.w);
 
-  
+
     if (this.alive) {
       fill(127);
       ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5);
 
-       
+
         textAlign(CENTER);
         fill(0);
         text(this.neighbourCount, this.x + this.w * 0.5, this.y + this.w - 6);
-      
+
 
     } else {
       fill(200);
       rect(this.x, this.y, this.w, this.w);
-      
+
       textAlign(CENTER);
         fill(0);
         text(this.neighbourCount, this.x + this.w * 0.5, this.y + this.w - 6);
     }
-  
+
 };
 
 Cell.prototype.countNeighbours = function() {
@@ -60,7 +61,7 @@ Cell.prototype.countNeighbours = function() {
       if (j < 0 || j >= rows) continue;
 
       var neighbour = grid[i][j];
-      if (neighbour.alive) {  
+      if (neighbour.alive) {
         total++;
       }
     }
@@ -68,18 +69,26 @@ Cell.prototype.countNeighbours = function() {
   this.neighbourCount = total;
 };
 
-/*Cell.prototype.golRules = function() {
-  if (neighbourCount <2){
-    this.alive=false;
-  }
-  else if (neighbourCount === 2 || neighbourCount === 3) {
 
+Cell.prototype.golRules = function() {
+
+//Conditions 1,2,3 require a living cell
+if (this.alive){
+  //Condition 1
+  if (this.neighbourCount <2){
+    this.alive = false;
+  }
+  //Condition 2 (Should not change anything if cell is alive)
+  else if (this.neighbourCount === 2 || this.neighbourCount === 3) {
     this.alive = true;
-
-  } else if (true) {
-
   }
-
+  //Condition 3
+  else if (this.neighbourCount > 3) {
+    this.alive = false;
+  }
 }
-*/
-
+  //Condition 4
+  else if (!this.alive && this.neighbourCount === 3) {
+    this.alive = true;
+  }
+}

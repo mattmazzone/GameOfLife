@@ -13,8 +13,14 @@ var w = 20;
 
 var totalAlive = 100;
 
+
+var delayInMilliseconds = 1000; //1 second
+
+
+
 function setup() {
   createCanvas(401, 401);
+  frameRate(30);
   cols = floor(width / w);
   rows = floor(height / w);
 
@@ -48,15 +54,35 @@ function setup() {
       grid[i][j].countNeighbours();
     }
   }
+
 }
 
 
 
 function draw() {
   background(255);
-  for (var i = 0; i < cols; i++) {
-    for (var j = 0; j < rows; j++) {
-      grid[i][j].show();
+
+
+
+
+    //Display changes
+    for (var i = 0; i < cols; i++) {
+      for (var j = 0; j < rows; j++) {
+        grid[i][j].show();
+      }
     }
-  }
+
+    setTimeout(function() {
+    //Game Of Life Logic
+      for (var i = 0; i < cols; i++) {
+        for (var j = 0; j < rows; j++) {
+          grid[i][j].golRules();
+        }
+      }
+
+  }, delayInMilliseconds);
+
+
+
+
 }
