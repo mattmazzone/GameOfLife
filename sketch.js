@@ -11,7 +11,7 @@ var cols;
 var rows;
 var w = 20;
 
-var totalAlive = 100;
+var totalAlive = 5000;
 
 
 var delayInMilliseconds = 1000; //1 second
@@ -19,7 +19,7 @@ var delayInMilliseconds = 1000; //1 second
 
 
 function setup() {
-  createCanvas(401, 401);
+  createCanvas(3001, 3001);
   frameRate(30);
   cols = floor(width / w);
   rows = floor(height / w);
@@ -55,6 +55,23 @@ function setup() {
     }
   }
 
+  setInterval(function() {
+    //Game Of Life Logic
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            grid[i][j].golRules();
+        }
+    }
+
+    //Re-count neighbours
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            grid[i][j].countNeighbours();
+        }
+    }
+
+  }, 100);
+
 }
 
 
@@ -62,27 +79,11 @@ function setup() {
 function draw() {
   background(255);
 
-
-
-
     //Display changes
     for (var i = 0; i < cols; i++) {
       for (var j = 0; j < rows; j++) {
         grid[i][j].show();
       }
     }
-
-    setTimeout(function() {
-    //Game Of Life Logic
-      for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-          grid[i][j].golRules();
-        }
-      }
-
-  }, delayInMilliseconds);
-
-
-
 
 }

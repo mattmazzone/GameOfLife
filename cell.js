@@ -25,22 +25,24 @@ Cell.prototype.show = function() {
 
 
     if (this.alive) {
-      fill(127);
+      fill(255);
       ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5);
 
-
+/*
         textAlign(CENTER);
         fill(0);
         text(this.neighbourCount, this.x + this.w * 0.5, this.y + this.w - 6);
-
+*/
 
     } else {
-      fill(200);
+      fill(100);
       rect(this.x, this.y, this.w, this.w);
 
+      /*
       textAlign(CENTER);
         fill(0);
         text(this.neighbourCount, this.x + this.w * 0.5, this.y + this.w - 6);
+      */
     }
 
 };
