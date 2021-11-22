@@ -9,9 +9,9 @@ function make2DArray(cols, rows) {
 var grid;
 var cols;
 var rows;
-var w = 10;
+var w = 2;
 
-var totalAlive = 5100;
+var totalAlive = 130000;
 
 var currentAlive = 0;
 
@@ -26,8 +26,8 @@ function setup() {
 
 
 
-    cols = floor(1301 / w);
-    rows = floor(801 / w);
+    cols = floor(1300 / w);
+    rows = floor(800 / w);
 
     grid = make2DArray(cols, rows);
     for (let i = 0; i < cols; i++) {
@@ -60,22 +60,7 @@ function setup() {
         }
     }
 
-    setInterval(function() {
-        //Game Of Life Logic
-        for (let i = 0; i < cols; i++) {
-            for (let j = 0; j < rows; j++) {
-                grid[i][j].golRules();
-            }
-        }
-
-        //Re-count neighbours
-        for (let i = 0; i < cols; i++) {
-            for (let j = 0; j < rows; j++) {
-                grid[i][j].countNeighbours();
-            }
-        }
-
-    }, 300);
+    
 
     button = createButton('Reset Board');
     button.position(1380, 180);
@@ -88,11 +73,26 @@ function setup() {
 
 function draw() {
 
-    background(255);
+    background(100);
 
     fill(128, 128, 128);
     noStroke();
     rect(1300, 0, 30, 800);
+
+
+    //Game Of Life Logic
+    for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            grid[i][j].golRules();
+         }
+    }
+
+    //Re-count neighbours
+    for (let i = 0; i < cols; i++) {
+         for (let j = 0; j < rows; j++) {
+            grid[i][j].countNeighbours();
+         }
+    }
 
     //Display changes
 

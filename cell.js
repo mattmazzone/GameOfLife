@@ -17,32 +17,11 @@ function Cell(i, j, w) {
 
 Cell.prototype.show = function() {
 
-    noStroke();
-    noFill();
-    rect(this.x, this.y, this.w, this.w);
-
 
     if (this.alive) {
         fill(255);
         noStroke();
         rect(this.x, this.y, this.w, this.w);
-
-
-        //textAlign(CENTER);
-        //fill(0);
-        //text(this.neighbourCount, this.x + this.w * 0.5, this.y + this.w - 6);
-
-
-    } else {
-        fill(100);
-        noStroke();
-        rect(this.x, this.y, this.w, this.w);
-
-
-        //textAlign(CENTER);
-        //fill(0);
-        //text(this.neighbourCount, this.x + this.w * 0.5, this.y + this.w - 6);
-
     }
 
 };
