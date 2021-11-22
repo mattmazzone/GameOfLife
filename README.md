@@ -21,3 +21,9 @@ Features to be added:
 - Edit Mode (Different brushes, library of organisms)
 - Advanced performance stats
 - Performance improvements
+
+
+## To Run
+- Clone the repository
+- Start a local server in the folder (https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)
+- Go to http://localhost:{your-port-num}
